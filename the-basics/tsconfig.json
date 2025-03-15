@@ -1,0 +1,5 @@
+{
+  "noEmitOnError": true, // 当 tsc 编译出错时不输出编译内容
+  "noImplicitAny": true, // 不允许使用 any 类型
+  "strictNullChecks": true, // 严格的空值检查，当使用一个可能为空的值时会出发 ts 错误
+}
