@@ -47,3 +47,23 @@ let mySquare2 = createSquare(squareOptions);
 // 但若没有和参数匹配的属性，仍然会发出警告
 let squareOptions3 = { colour: "red" };
 let mySquare3 = createSquare(squareOptions3);
+
+
+interface Colorful {
+  color: string;
+}
+interface Circle {
+  radius: number;
+}
+// 使用 interface 扩展类型
+interface ColorfulCircle1 extends Colorful, Circle {}
+// 使用 type 扩展类型
+type ColorfulCircle2 = Colorful & Circle;
+
+
+let point = [3, 4] as const;
+// 可以在元组类型上使用 readonly
+function distanceFromOrigin([x, y]: readonly [number, number]) {
+  return Math.sqrt(x ** 2 + y ** 2);
+}
+distanceFromOrigin(point);
