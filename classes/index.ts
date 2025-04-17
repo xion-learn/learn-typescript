@@ -36,3 +36,45 @@ class MyClass extends Base{
     this._length = value;
   }
 }
+
+
+interface A {
+  x: number;
+  y?: number;
+}
+class C implements A {
+  x = 0;
+}
+const c = new C();
+// interface 并不会影响类的运行
+c.y = 10;
+
+
+class Base1 {
+  greet() {
+    console.log("Hello, world!");
+  }
+}
+class Derived extends Base1 {
+  // 子类必须遵循父类的约束，否则报错
+  greet(name: string) {
+    console.log(`Hello, ${name.toUpperCase()}`);
+  }
+}
+
+
+
+class Base2 {
+  name = "base";
+  constructor() {
+    console.log("My name is " + this.name);
+  }
+}
+
+class Derived2 extends Base2 {
+  name = "derived";
+}
+
+// Prints "base", not "derived"
+// 父类的构造函数执行后，才会初始化子类的变量
+const d = new Derived2();
