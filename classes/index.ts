@@ -4,7 +4,7 @@ class Base {
 
 class MyClass extends Base{
   // 类中可以使用索引签名
-  [s: string]: boolean | ((s: string) => boolean);
+  [s: string]: boolean | number | string | ((s: string) => boolean);
   name: string;
   readonly n: string;
 
@@ -78,3 +78,30 @@ class Derived2 extends Base2 {
 // Prints "base", not "derived"
 // 父类的构造函数执行后，才会初始化子类的变量
 const d = new Derived2();
+
+
+class Greeter {
+  public greet() {
+    console.log("Hello, " + this.getName());
+  }
+  protected getName() {
+    return "hi";
+  }
+}
+class SpecialGreeter extends Greeter {
+  public howdy() {
+    // OK to access protected member here
+    console.log("Howdy, " + this.getName());
+  }
+}
+const g = new SpecialGreeter();
+g.greet(); // OK
+g.getName();  // 类外无法访问 protected 成员
+
+
+class Base3 {
+  private x = 0;
+}
+const b = new Base3();
+// 类外无法访问 private 成员
+console.log(b.x);
