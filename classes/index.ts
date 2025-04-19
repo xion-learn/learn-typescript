@@ -105,3 +105,22 @@ class Base3 {
 const b = new Base3();
 // 类外无法访问 private 成员
 console.log(b.x);
+
+
+class MyClass1 {
+  // static 成员上可以添加可见修饰符
+  private static x = 0;
+  static printX() {
+    console.log(MyClass1.x);
+  }
+  // 类中可以声明 static 作用域，外部无法访问
+  static {
+    try {
+      const lastInstances = [1]
+      MyClass1.x += lastInstances.length;
+    }
+    catch {}
+  }
+}
+console.log(MyClass1.x);
+MyClass1.printX();
