@@ -43,3 +43,49 @@ let c: Circle = {
   kind: ShapeKind.G,
   radius: 100,
 };
+
+
+enum E {
+  X,
+  Y,
+  Z,
+}
+function f(obj: { X: number }) {
+  return obj.X;
+}
+// 枚举是运行时真实存在的对象，可以当作参数使用
+f(E);
+// 获取枚举的键组成的联合类型，需要使用 keyof typeof
+type LogLevelStrings = keyof typeof E;
+// 枚举的数字类型成员在编译时会反向映射，即可以通过值访问到键
+let x = E.X;
+let nameOfX = E[x]; // "X"
+
+
+// const 枚举，在编译时会被完全移除
+const enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+// let directions = [
+//   0 /* Direction.Up */,
+//   1 /* Direction.Down */,
+//   2 /* Direction.Left */,
+//   3 /* Direction.Right */,
+// ];
+let directions = [
+  Direction.Up,
+  Direction.Down,
+  Direction.Left,
+  Direction.Right,
+];
+
+
+// 环境枚举
+declare enum Enum {
+  A = 1,
+  B,
+  C = 2,
+}
